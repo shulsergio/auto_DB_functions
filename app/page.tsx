@@ -23,8 +23,8 @@ export default function Home() {
         <div className="total">
           <input
             type="text"
-            placeholder="Type something..."
-            className="input-field"
+            placeholder="input hex..."
+            className="input-field mb-4 p-0.5"
             value={hexinput}
             onChange={(e) => setHexInput(e.target.value)}
           />
