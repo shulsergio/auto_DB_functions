@@ -24,23 +24,25 @@ export default function Home() {
           <input
             type="text"
             placeholder="input hex..."
-            className="input-field mb-4 p-0.5"
+            className="input-field p-2 focus:outline-none  focus:ring-2 focus:ring-blue-500  focus:border-blue-500"
             value={hexinput}
             onChange={(e) => setHexInput(e.target.value)}
           />
           <button
             type="submit"
             onClick={() => hexToDecFunction({ hexData: hexinput })}
-            className="submit-button"
+            className="submit-button p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           >
             Submit
           </button>
         </div>
         {result && (
-          <p className="result-text">First, result in dec system: {result}</p>
+          <p className="result-text p-0.5">
+            First, result in dec system: {result}
+          </p>
         )}
         {result && (
-          <p className="result-text">
+          <p className="result-text p-0.5">
             Second, result in dec system: {result % 64}
           </p>
         )}
