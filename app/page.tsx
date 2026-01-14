@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
@@ -19,7 +20,14 @@ export default function Home() {
         <h1 className="flex w-full justify-center font-extrabold text-gray-800 dark:text-white sm:text-5xl">
           Welcome
         </h1>
-
+        <div className="page">
+          <Link
+            href="/script"
+            className="p-2 border-2 border-gray-300 hover:bg-gray-100 text-black ml-2"
+          >
+            bin script
+          </Link>
+        </div>
         <div>
           <input
             type="text"

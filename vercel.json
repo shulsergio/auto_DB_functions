@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/python-logic",
+      "destination": "/api/editBin.py"
+    }
+  ]
+}
