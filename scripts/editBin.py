@@ -1,31 +1,39 @@
 import sys
 
 def process_bin(): 
-    input_data = bytearray(sys.stdin.buffer.read())
-    
-    if not input_data:
-        print("Данные не получены")
-        return
-
-    file_size = len(input_data)
-    first_bytes = input_data[:4].hex()
-    addressOne = 0x10
-    addressTwo = 0x20 
-    addressThree = 0x30
-    addressFour = 0x40
-    addressFive = 0x50
-    if addressOne < file_size:
-        input_data[addressOne] = 0xAA
+    try:
+        # 1. Читаем данные из stdin
+        input_data = bytearray(sys.stdin.buffer.read())
         
-    if addressTwo < file_size:
-        input_data[addressTwo] = 0xBB
-    if addressThree < file_size:
-        input_data[addressThree] = 0xCC
-    if addressFour < file_size:
-        input_data[addressFour] = 0xDD
-    if addressFive < file_size:
-        input_data[addressFive] = 0xEE
- 
-    sys.stdout.buffer.write(input_data)
+        if not input_data:
+            # Ошибки пишем ТОЛЬКО в stderr
+            print("Данные не получены", file=sys.stderr)
+            return
+
+        file_size = len(input_data)
+        
+        # 2. Определяем адреса
+        addresses = {
+            0x10: 0xAA,
+            0x20: 0xBB,
+            0x30: 0xCC,
+            0x40: 0xDD,
+            0x50: 0xEE
+        }
+
+        # 3. Применяем правки
+        for addr, value in addresses.items():
+            if addr < file_size:
+                input_data[addr] = value
+
+        # 4. ПИШЕМ РЕЗУЛЬТАТ (Важно: используем input_data, а не data)
+        sys.stdout.buffer.write(input_data)
+        sys.stdout.buffer.flush()
+        
+    except Exception as e: 
+        # Если что-то пошло не так, выводим ошибку для Node.js
+        print(f"Python Runtime Error: {str(e)}", file=sys.stderr)
+        sys.exit(1)
+
 if __name__ == "__main__":
     process_bin()
