@@ -3,6 +3,13 @@ import { spawn } from "child_process";
 import path from "path";
 import fs from "fs"; //
 
+export async function GET() {
+  return NextResponse.json({ 
+    status: "OK", 
+    message: "Маршрут найден и работает!",
+    time: new Date().toISOString()
+  });
+}
 
 export async function POST(req: Request) {
   const formData = await req.formData();
