@@ -11,12 +11,12 @@ export default function ScriptPage() {
     setStatus("Обработка...");
     const formData = new FormData();
     formData.append("binFile", file);
-
-    try {
-      const response = await fetch("/api/bin", {
-        method: "POST",
-        body: formData,
-      });
+ 
+try {
+    const response = await fetch("/api/bin", {  
+      method: "POST",
+      body: formData,
+    });
 
       if (!response.ok) {
         const errorData = await response.json();
